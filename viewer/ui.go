@@ -4,10 +4,10 @@ import (
 	"fmt"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/mathaou/termdbms/tuiutil"
 	"github.com/muesli/reflow/wordwrap"
 	"strconv"
 	"strings"
-	"termdbms/tuiutil"
 	"time"
 )
 

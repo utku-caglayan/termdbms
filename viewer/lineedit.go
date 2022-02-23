@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/mathaou/termdbms/database"
+	"github.com/mathaou/termdbms/tuiutil"
 	"math/rand"
 	"os"
 	"strings"
-	"termdbms/database"
-	"termdbms/tuiutil"
 	"time"
 )
 
@@ -128,7 +128,7 @@ func EditEnter(m *TuiModel) {
 			return
 		} else if input == ":clip" {
 			ExitToDefaultView(m)
-			if len( m.ClipboardList.Items()) == 0 {
+			if len(m.ClipboardList.Items()) == 0 {
 				return
 			}
 			m.UI.ShowClipboard = true
@@ -186,14 +186,14 @@ func EditEnter(m *TuiModel) {
 				}
 				m.Clipboard = append(m.Clipboard, SQLSnippet{
 					Query: input,
-					Name: title,
+					Name:  title,
 				})
 				b, _ := json.Marshal(m.Clipboard)
 				snippetsFile := fmt.Sprintf("%s/%s", HiddenTmpDirectoryName, SQLSnippetsFile)
 				f, _ := os.OpenFile(snippetsFile, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0775)
 				f.Write(b)
 				f.Close()
-				m.WriteMessage(fmt.Sprintf("Wrote SQL snippet %s to %s. Total count is %d", title, snippetsFile, len(m.ClipboardList.Items()) + 1))
+				m.WriteMessage(fmt.Sprintf("Wrote SQL snippet %s to %s. Total count is %d", title, snippetsFile, len(m.ClipboardList.Items())+1))
 			}
 			m.TextInput.Model.SetValue("")
 		}

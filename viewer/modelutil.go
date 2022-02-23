@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"fmt"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/mathaou/termdbms/database"
+	"github.com/mathaou/termdbms/list"
+	"github.com/mathaou/termdbms/tuiutil"
 	"os"
 	"strings"
-	"termdbms/database"
-	"termdbms/list"
-	"termdbms/tuiutil"
 )
 
 func (m *TuiModel) WriteMessage(s string) {

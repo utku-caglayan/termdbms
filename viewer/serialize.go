@@ -3,12 +3,12 @@ package viewer
 import (
 	"errors"
 	"fmt"
+	"github.com/mathaou/termdbms/database"
 	"log"
 	"math/rand"
 	"os"
 	"path"
 	"strings"
-	"termdbms/database"
 )
 
 var (

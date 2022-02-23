@@ -4,8 +4,8 @@ import (
 	"fmt"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"termdbms/list"
-	"termdbms/tuiutil"
+	"github.com/mathaou/termdbms/list"
+	"github.com/mathaou/termdbms/tuiutil"
 )
 
 var (
@@ -153,7 +153,7 @@ func (m TuiModel) View() string {
 	}(&content)
 
 	if m.UI.ShowClipboard {
-		<- done
+		<-done
 		return content
 	}
 

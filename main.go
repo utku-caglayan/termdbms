@@ -6,6 +6,9 @@ import (
 	"fmt"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/mathaou/termdbms/database"
+	. "github.com/mathaou/termdbms/tuiutil"
+	. "github.com/mathaou/termdbms/viewer"
 	"github.com/muesli/termenv"
 	"io/fs"
 	"io/ioutil"
@@ -13,9 +16,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"termdbms/database"
-	. "termdbms/tuiutil"
-	. "termdbms/viewer"
 )
 
 type DatabaseType string

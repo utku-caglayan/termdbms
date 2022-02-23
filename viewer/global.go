@@ -4,9 +4,9 @@ import (
 	"fmt"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/mathaou/termdbms/database"
+	"github.com/mathaou/termdbms/tuiutil"
 	"strings"
-	"termdbms/database"
-	"termdbms/tuiutil"
 )
 
 type Command func(m *TuiModel) tea.Cmd

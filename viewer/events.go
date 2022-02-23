@@ -6,9 +6,9 @@ import (
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/mathaou/termdbms/list"
+	"github.com/mathaou/termdbms/tuiutil"
 	"os"
-	"termdbms/list"
-	"termdbms/tuiutil"
 	"time"
 )
 

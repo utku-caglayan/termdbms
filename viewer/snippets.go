@@ -4,10 +4,10 @@ import (
 	"fmt"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/mathaou/termdbms/list"
+	"github.com/mathaou/termdbms/tuiutil"
 	"io"
 	"strings"
-	"termdbms/list"
-	"termdbms/tuiutil"
 )
 
 var (
@@ -50,7 +50,7 @@ func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list
 
 	str := fmt.Sprintf("%d) %s%s | ", index+1, strings.Repeat(" ", digits-incomingDigits),
 		i.Title())
-	query := localStyle.Render(i.Query[0:Min(TUIWidth - 10, Max(len(i.Query) - 1, len(i.Query) - 1 - len(str)))]) // padding + tab + padding
+	query := localStyle.Render(i.Query[0:Min(TUIWidth-10, Max(len(i.Query)-1, len(i.Query)-1-len(str)))]) // padding + tab + padding
 	str += strings.ReplaceAll(query, "\n", "")
 
 	localStyle = style.Copy().PaddingLeft(4)
@@ -67,7 +67,7 @@ func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list
 
 			return lipgloss.JoinHorizontal(lipgloss.Left,
 				localStyle.
-				Render("> "),
+					Render("> "),
 				style.Render(s))
 		}
 	}
