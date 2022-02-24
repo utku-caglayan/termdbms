@@ -2,7 +2,9 @@ package viewer
 
 import (
 	"errors"
+
 	"github.com/charmbracelet/lipgloss"
+
 	"github.com/mathaou/termdbms/tuiutil"
 )
 
