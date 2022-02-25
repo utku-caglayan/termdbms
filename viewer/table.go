@@ -2,12 +2,14 @@ package viewer
 
 import (
 	"fmt"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/mathaou/termdbms/database"
-	"github.com/mathaou/termdbms/tuiutil"
 	"strings"
 	"time"
+
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
+
+	"github.com/mathaou/termdbms/database"
+	"github.com/mathaou/termdbms/tuiutil"
 )
 
 type TableAssembly func(m *TuiModel, s *string, c *chan bool)
@@ -34,7 +36,7 @@ func init() {
 			builder []string
 		)
 
-		style := m.GetBaseStyle()
+		style := m.GetBaseStyle().BorderBottom(true)
 
 		if !tuiutil.Ascii {
 			// for column headers
