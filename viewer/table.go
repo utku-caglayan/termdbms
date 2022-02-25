@@ -36,7 +36,7 @@ func init() {
 			builder []string
 		)
 
-		style := m.GetBaseStyle().BorderBottom(true)
+		style := m.GetBaseStyle()
 
 		if !tuiutil.Ascii {
 			// for column headers
