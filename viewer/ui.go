@@ -120,7 +120,7 @@ func DisplayTable(m *TuiModel) string {
 			// handle highlighting
 			if c == m.GetColumn() && r == m.GetRow() {
 				if !tuiutil.Ascii {
-					base.Foreground(lipgloss.Color(tuiutil.Highlight()))
+					base.Foreground(lipgloss.Color(tuiutil.Highlight())).Reverse(true)
 				} else if tuiutil.Ascii {
 					s = "|" + s
 				}

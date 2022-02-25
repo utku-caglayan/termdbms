@@ -1,8 +1,6 @@
 package viewer
 
 import (
-	"fmt"
-
 	tea "github.com/charmbracelet/bubbletea"
 
 	"github.com/mathaou/termdbms/tuiutil"
@@ -19,8 +17,8 @@ func init() {
 	GlobalCommands["t"] = func(m *TuiModel) tea.Cmd {
 		tuiutil.SelectedTheme = (tuiutil.SelectedTheme + 1) % len(tuiutil.ValidThemes)
 		SetStyles()
-		themeName := tuiutil.ValidThemes[tuiutil.SelectedTheme]
-		m.WriteMessage(fmt.Sprintf("Changed themes to %s", themeName))
+		//themeName := tuiutil.ValidThemes[tuiutil.SelectedTheme]
+		//m.WriteMessage(fmt.Sprintf("Changed themes to %s", themeName))
 		return nil
 	}
 	GlobalCommands["pgdown"] = func(m *TuiModel) tea.Cmd {
