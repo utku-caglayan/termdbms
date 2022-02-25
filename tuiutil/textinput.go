@@ -19,6 +19,7 @@ const DefaultBlinkSpeed = time.Millisecond * 530
 // multiple text inputs are involved.
 var (
 	Ascii  bool
+	Faint  bool
 	lastID int
 	idMtx  sync.Mutex
 )

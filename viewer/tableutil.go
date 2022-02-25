@@ -70,6 +70,10 @@ func (m *TuiModel) GetBaseStyle() lipgloss.Style {
 			BorderForeground(lipgloss.Color(tuiutil.BorderColor()))
 	}
 
+	if tuiutil.Faint {
+		s = s.Faint(true)
+	}
+
 	return s
 }
 
