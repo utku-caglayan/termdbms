@@ -118,7 +118,7 @@ func DisplayTable(m *TuiModel) string {
 			s := GetStringRepresentationOfInterface(val)
 			s = " " + s
 			// handle highlighting
-			if c == m.GetColumn() && r == m.GetRow() {
+			if r == m.GetRow() {
 				if !tuiutil.Ascii {
 					base.Foreground(lipgloss.Color(tuiutil.Highlight())).Reverse(true)
 				} else if tuiutil.Ascii {
