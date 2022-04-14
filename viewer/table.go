@@ -36,14 +36,14 @@ func init() {
 			builder []string
 		)
 
-		style := m.GetBaseStyle()
+		bs := m.GetBaseStyle()
+		style := bs.UnsetForeground().UnsetFaint().BorderTop(true).BorderBottom(true).BorderRight(true).Width(bs.GetWidth() - 1)
 
-		if !tuiutil.Ascii {
-			// for column headers
-			style = style.Foreground(lipgloss.Color(tuiutil.HeaderForeground())).
-				BorderBackground(lipgloss.Color(tuiutil.HeaderBorderBackground())).
-				Background(lipgloss.Color(tuiutil.HeaderBackground()))
-		}
+		//if !tuiutil.Ascii {
+		//	// for column headers
+		//	style = style.Foreground(lipgloss.Color(tuiutil.HeaderForeground())).
+		//		BorderBackground(lipgloss.Color(tuiutil.HeaderBorderBackground())).Background(lipgloss.Color(tuiutil.HeaderBackground()))
+		//}
 		headers := m.Data().TableHeadersSlice
 		for i, d := range headers { // write all headers
 			if m.UI.ExpandColumn != -1 && i != m.UI.ExpandColumn {
@@ -71,9 +71,12 @@ func init() {
 					len(m.Data().TableHeaders), // look at how headers get rendered to get accurate record number
 					len(m.GetColumnData()),
 					len(m.GetHeaders())) // this will need to be refactored when filters get added
-				headerTop = HeaderStyle.Render(headerTop)
+				navigationArrowL := lipgloss.Width("<<<")
+				titleWidth := m.Viewport.Width - navigationArrowL*2
+				headerTop = "<<<" + fmt.Sprintf("%*s", -titleWidth, fmt.Sprintf("%*s", (titleWidth+len(headerTop))/2, headerTop)) + ">>>"
+				headerStyle := HeaderStyle.Copy().Foreground(lipgloss.Color(tuiutil.Highlight())).Reverse(true)
+				headerTop = headerStyle.Copy().Render(headerTop)
 			}
-
 			headerMid := lipgloss.JoinHorizontal(lipgloss.Left, builder...)
 			if m.UI.RenderSelection {
 				headerMid = ""

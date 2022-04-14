@@ -110,32 +110,39 @@ func DisplayTable(m *TuiModel) string {
 		)
 
 		columnValues := m.Data().TableSlices[columnName]
+		base := m.GetBaseStyle().
+			//Background(lipgloss.Color(tuiutil.HeaderBackground())).
+			Background(lipgloss.Color("#000000"))
+			//BorderBackground(lipgloss.Color(tuiutil.HeaderBackground()))
 		for r, val := range columnValues {
-			base := m.GetBaseStyle().
-				UnsetBorderLeft().
-				UnsetBorderStyle().
-				UnsetBorderForeground()
 			s := GetStringRepresentationOfInterface(val)
 			s = " " + s
+			tmpStyle := base.Copy()
 			// handle highlighting
 			if r == m.GetRow() {
 				if !tuiutil.Ascii {
-					base.Foreground(lipgloss.Color(tuiutil.Highlight())).Reverse(true)
+					tmpStyle = tmpStyle.Background(lipgloss.Color(tuiutil.Highlight())).
+						UnsetBorderLeft().
+						UnsetBorderStyle().
+						UnsetBorderForeground().
+						PaddingLeft(1).                 // to make up for lost border
+						Width(tmpStyle.GetWidth() + 1). // to make up for lost border
+						Foreground(lipgloss.Color("#000000")).Bold(true)
 				} else if tuiutil.Ascii {
 					s = "|" + s
 				}
 			}
 			// display text based on type
-			rowBuilder = append(rowBuilder, base.Render(TruncateIfApplicable(m, s)))
+			rowBuilder = append(rowBuilder, tmpStyle.Render(TruncateIfApplicable(m, s)))
 		}
 
 		for len(rowBuilder) < m.Viewport.Height { // fix spacing issues
-			rowBuilder = append(rowBuilder, "")
+			rowBuilder = append(rowBuilder, base.Render(""))
 		}
 
 		column := lipgloss.JoinVertical(lipgloss.Left, rowBuilder...)
 		// get a list of columns
-		builder = append(builder, m.GetBaseStyle().Render(column))
+		builder = append(builder, column)
 	}
 
 	// join them into rows
@@ -235,7 +242,7 @@ func DisplaySelection(m *TuiModel) string {
 		return DisplayTable(m)
 	}
 
-	base := m.GetBaseStyle()
+	base := m.GetBaseStyle().UnsetBorderStyle()
 
 	if m.Data().EditTextBuffer != "" { // this is basically just if its a string follow these rules
 		conv := m.Data().EditTextBuffer

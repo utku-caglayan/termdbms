@@ -12,7 +12,6 @@ const (
 	TextColorKey                = "TextColor"
 )
 
-
 // styling functions
 var (
 	Highlight = func() string {
@@ -75,7 +74,7 @@ var (
 			HeaderTopForegroundColorKey: "#b48ead",
 		},
 		0: {
-			HeaderBackgroundKey:         "#505050",
+			HeaderBackgroundKey:         "#383838",
 			HeaderBorderBackgroundKey:   "#505050",
 			HeaderBottomColorKey:        "#FFFFFF",
 			BorderColorKey:              "#FFFFFF",
