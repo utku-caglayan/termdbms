@@ -29,7 +29,7 @@ func AssembleTable(m *TuiModel) string {
 func (m *TuiModel) NumHeaders() int {
 	headers := m.GetHeaders()
 	l := len(headers)
-	if m.UI.ExpandColumn > -1 || l == 0 {
+	if /*m.UI.ExpandColumn > -1 || */ l == 0 {
 		return 1
 	}
 

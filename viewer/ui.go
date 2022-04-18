@@ -100,10 +100,11 @@ func DisplayTable(m *TuiModel) string {
 	)
 
 	// go through all columns
-	for c, columnName := range m.Data().TableHeadersSlice {
-		if m.UI.ExpandColumn > -1 && m.UI.ExpandColumn != c {
-			continue
-		}
+	slice := m.Data().TableHeadersSlice
+	for _, columnName := range slice {
+		//if m.UI.ExpandColumn > -1 && m.UI.ExpandColumn != c {
+		//	continue
+		//}
 
 		var (
 			rowBuilder []string
@@ -242,7 +243,7 @@ func DisplaySelection(m *TuiModel) string {
 		return DisplayTable(m)
 	}
 
-	base := m.GetBaseStyle().UnsetBorderStyle()
+	base := m.GetBaseStyle().UnsetBorderStyle().Width(m.Viewport.Width - 1)
 
 	if m.Data().EditTextBuffer != "" { // this is basically just if its a string follow these rules
 		conv := m.Data().EditTextBuffer
